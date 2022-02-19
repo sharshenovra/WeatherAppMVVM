@@ -76,6 +76,7 @@ class DetailDailyCell: UITableViewCell{
         visibilityLabel.snp.makeConstraints { make in
             make.top.equalTo(visibilityImage.snp.bottom).offset(8)
             make.centerX.equalToSuperview().offset(100)
+            make.bottom.equalToSuperview()
         }
     }
     

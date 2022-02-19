@@ -13,8 +13,8 @@ class CustomDailyCell: UITableViewCell {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.showsHorizontalScrollIndicator = false
         view.backgroundColor = .systemBlue
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
     
