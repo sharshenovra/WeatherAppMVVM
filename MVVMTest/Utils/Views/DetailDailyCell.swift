@@ -17,9 +17,6 @@ class DetailDailyCell: UITableViewCell{
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor.systemBlue
         
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.blue.cgColor
-        
         selectionStyle = UITableViewCell.SelectionStyle.none
         accessoryType = isSelected ? .checkmark : .none
         selectionStyle = .none

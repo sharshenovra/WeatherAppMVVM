@@ -14,6 +14,7 @@ class CustomDailyCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         view.showsHorizontalScrollIndicator = false
+        view.backgroundColor = .systemBlue
         return view
     }()
     

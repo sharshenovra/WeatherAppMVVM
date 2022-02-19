@@ -14,7 +14,7 @@ class ForecastCell: UITableViewCell {
         backgroundColor = UIColor.systemBlue
         
         layer.borderWidth = 1
-        layer.borderColor = UIColor.blue.cgColor
+        layer.borderColor = UIColor.systemBlue.cgColor
         
         selectionStyle = UITableViewCell.SelectionStyle.none
         accessoryType = isSelected ? .checkmark : .none

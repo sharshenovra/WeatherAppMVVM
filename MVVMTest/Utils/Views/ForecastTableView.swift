@@ -7,7 +7,7 @@ class ForecastTableView: UIView{
         let view = UITableView()
         view.delegate = self
         view.dataSource = self
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemBlue
         view.register(ForecastCell.self, forCellReuseIdentifier: "ForecastCell")
         view.register(CustomDailyCell.self, forCellReuseIdentifier: "CustomDailyCell")
         view.register(DetailDailyCell.self, forCellReuseIdentifier: "DetailDailyCell")
@@ -15,7 +15,7 @@ class ForecastTableView: UIView{
     }()
     
     override func layoutSubviews() {
-        layer.opacity = 0.7
+        layer.opacity = 0.8
         
         addSubview(forecastTableView)
         forecastTableView.snp.makeConstraints { make in
