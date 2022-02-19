@@ -1,7 +1,7 @@
 import Foundation
 
 protocol MainDelegate: AnyObject{
-    func showNews(model: WeatherModel?)
+    func showWeather(model: WeatherModel?)
 }
 
 class MainViewModel{
@@ -15,9 +15,9 @@ class MainViewModel{
         self.repository = repository
     }
     
-    func getNews(){
-        ApiClient.shared.getNews { model in
-            self.delegate?.showNews(model: model)
+    func getWeather(){
+        ApiClient.shared.getWeather { model in
+            self.delegate?.showWeather(model: model)
         }
     }
 }

@@ -18,7 +18,7 @@ class MainController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getNews()
+        viewModel.getWeather()
         setupConstraints()
     }
 
@@ -72,7 +72,7 @@ class MainController: UIViewController {
 }
 
 extension MainController: MainDelegate{
-    func showNews(model: WeatherModel?) {
+    func showWeather(model: WeatherModel?) {
         DispatchQueue.main.async {
             self.models = model
             self.setupViews(model: model)

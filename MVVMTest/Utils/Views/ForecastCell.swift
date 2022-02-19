@@ -31,7 +31,7 @@ class ForecastCell: UITableViewCell {
             make.centerX.equalToSuperview().offset(-30)
             make.centerY.equalToSuperview()
             make.height.equalToSuperview().dividedBy(1.5)
-            make.width.equalTo(frame.height)
+            make.width.equalToSuperview().dividedBy(5)
         }
         
         addSubview(forecastMinTempTitle)
