@@ -10,6 +10,7 @@ class ForecastTableView: UIView{
         view.backgroundColor = .darkGray
         view.register(ForecastCell.self, forCellReuseIdentifier: "ForecastCell")
         view.register(CustomDailyCell.self, forCellReuseIdentifier: "CustomDailyCell")
+        view.register(DetailDailyCell.self, forCellReuseIdentifier: "DetailDailyCell")
         return view
     }()
     
@@ -35,7 +36,7 @@ class ForecastTableView: UIView{
 
 extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (models?.count ?? 0) + 1
+        return (models?.count ?? 0) + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,7 +47,7 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
                 cell.fill(models: modelsToCellection)
             }
             return cell
-        }else{
+        }else if indexPath.row >= 1 && indexPath.row != 4{
             let cell = forecastTableView.dequeueReusableCell(withIdentifier: "ForecastCell") as! ForecastCell
             
             let index = indexPath.row
@@ -64,14 +65,22 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
             }
             
             return cell
+        }else{
+            let cell = forecastTableView.dequeueReusableCell(withIdentifier: "DetailDailyCell") as! DetailDailyCell
+            if let model = modelsToCellection?.current {
+                cell.fillCell(model: model)
+            }
+            return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{
             return 100
-        }else{
+        }else if indexPath.row >= 1 && indexPath.row != 4 {
             return 50
+        }else{
+            return 150
         }
     }
 }
