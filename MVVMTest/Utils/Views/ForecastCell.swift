@@ -24,13 +24,15 @@ class ForecastCell: UITableViewCell {
         dayTitle.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(8)
+            make.right.equalTo(contentView.snp.centerX)
         }
         
         addSubview(forecastImage)
         forecastImage.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalTo(dayTitle.snp.right).offset(8)
             make.height.equalToSuperview().dividedBy(2)
-            make.width.equalTo(frame.height / 1.5)
+            make.width.equalTo(contentView.frame.height / 1.5)
         }
         
         addSubview(forecastMaxTempTitle)
@@ -42,7 +44,7 @@ class ForecastCell: UITableViewCell {
         addSubview(forecastMinTempTitle)
         forecastMinTempTitle.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalTo(forecastMaxTempTitle.snp.left).offset(-40)
+            make.right.equalTo(forecastMaxTempTitle.snp.left).offset(-30)
         }
     }
     

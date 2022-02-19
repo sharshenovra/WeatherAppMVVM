@@ -21,7 +21,7 @@ class MainController: UIViewController {
         viewModel.getWeather()
         setupConstraints()
     }
-
+    
     func setupViews(model: WeatherModel?){
         view.backgroundColor = .systemBlue
         locationLabel.text = "\(model?.location?.name ?? "") \(model?.location?.country ?? "")"
@@ -50,15 +50,15 @@ class MainController: UIViewController {
         
         view.addSubview(tempLabel)
         tempLabel.snp.makeConstraints { make in
-            make.top.equalTo(locationLabel.snp.bottom).offset(36)
+            make.top.equalTo(locationLabel.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
         }
         
         view.addSubview(feelImage)
         feelImage.snp.makeConstraints { make in
-            make.top.equalTo(tempLabel.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
             make.height.equalTo(view.frame.width / 3)
+            make.centerY.equalToSuperview().dividedBy(1.5)
             make.width.equalToSuperview().dividedBy(3)
         }
         view.addSubview(forecastTableView)

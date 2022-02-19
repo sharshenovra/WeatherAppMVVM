@@ -11,10 +11,11 @@ class CustomUILabel: UILabel{
         textColor = .white
         textAlignment = .center
         font = UIFont.systemFont(ofSize: fontSize, weight: .light)
-        numberOfLines = 0
+        numberOfLines = 1
         layer.shadowOpacity = 0.3
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowOffset = CGSize(width: 3, height: 2)
+        adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder: NSCoder) {
