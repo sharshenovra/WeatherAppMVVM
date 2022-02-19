@@ -2,7 +2,7 @@ import Foundation
 import SnapKit
 
 class ForecastTableView: UIView{
-
+    
     private lazy var forecastTableView: UITableView = {
         let view = UITableView()
         view.delegate = self
@@ -35,8 +35,7 @@ class ForecastTableView: UIView{
 
 extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return models?.count + 1
-        return 4
+        return (models?.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +48,7 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
             return cell
         }else{
             let cell = forecastTableView.dequeueReusableCell(withIdentifier: "ForecastCell") as! ForecastCell
-
+            
             let index = indexPath.row
             
             if index == 1{
@@ -63,7 +62,7 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
             if let model = models?[indexPath.row - 1].day {
                 cell.fill(model: model)
             }
-        
+            
             return cell
         }
     }
@@ -74,5 +73,5 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
         }else{
             return 50
         }
-        }
     }
+}

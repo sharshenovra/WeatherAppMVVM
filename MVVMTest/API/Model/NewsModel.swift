@@ -1,16 +1,11 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let weatherModel = try? newJSONDecoder().decode(WeatherModel.self, from: jsonData)
-
 import Foundation
 
-// MARK: - WeatherModel
+
 class WeatherModel: Codable {
     var location: Location?
     var current: Current?
     var forecast: Forecast?
-
+    
     init(location: Location?, current: Current?, forecast: Forecast?) {
         self.location = location
         self.current = current
@@ -18,7 +13,7 @@ class WeatherModel: Codable {
     }
 }
 
-// MARK: - Current
+
 class Current: Codable {
     var lastUpdatedEpoch: Int?
     var lastUpdated: String?
@@ -34,7 +29,7 @@ class Current: Codable {
     var feelslikeC, feelslikeF: Double?
     var visKM, visMiles, uv: Int?
     var gustMph, gustKph: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case lastUpdatedEpoch = "last_updated_epoch"
         case lastUpdated = "last_updated"
@@ -59,7 +54,7 @@ class Current: Codable {
         case gustMph = "gust_mph"
         case gustKph = "gust_kph"
     }
-
+    
     init(lastUpdatedEpoch: Int?, lastUpdated: String?, tempC: Double?, tempF: Double?, isDay: Int?, condition: Condition?, windMph: Double?, windKph: Double?, windDegree: Int?, windDir: WindDir?, pressureMB: Int?, pressureIn: Double?, precipMm: Int?, precipIn: Int?, humidity: Int?, cloud: Int?, feelslikeC: Double?, feelslikeF: Double?, visKM: Int?, visMiles: Int?, uv: Int?, gustMph: Double?, gustKph: Double?) {
         self.lastUpdatedEpoch = lastUpdatedEpoch
         self.lastUpdated = lastUpdated
@@ -87,12 +82,11 @@ class Current: Codable {
     }
 }
 
-// MARK: - Condition
 class Condition: Codable {
     var text: String?
     var icon: Icon?
     var code: Int?
-
+    
     init(text: String?, icon: Icon?, code: Int?) {
         self.text = text
         self.icon = icon
@@ -107,13 +101,6 @@ enum Icon: String, Codable {
     case cdnWeatherapiCOMWeather64X64Night119PNG = "//cdn.weatherapi.com/weather/64x64/night/119.png"
 }
 
-//enum Text: String, Codable {
-//    case clear = "Clear"
-//    case cloudy = "Cloudy"
-//    case partlyCloudy = "Partly cloudy"
-//    case sunny = "Sunny"
-//}
-
 enum WindDir: String, Codable {
     case e = "E"
     case ene = "ENE"
@@ -124,29 +111,28 @@ enum WindDir: String, Codable {
     case sse = "SSE"
 }
 
-// MARK: - Forecast
 class Forecast: Codable {
     var forecastday: [Forecastday]?
-
+    
     init(forecastday: [Forecastday]?) {
         self.forecastday = forecastday
     }
 }
 
-// MARK: - Forecastday
+
 class Forecastday: Codable {
     var date: String?
     var dateEpoch: Int?
     var day: Day?
     var astro: Astro?
     var hour: [Hour]?
-
+    
     enum CodingKeys: String, CodingKey {
         case date
         case dateEpoch = "date_epoch"
         case day, astro, hour
     }
-
+    
     init(date: String?, dateEpoch: Int?, day: Day?, astro: Astro?, hour: [Hour]?) {
         self.date = date
         self.dateEpoch = dateEpoch
@@ -156,17 +142,16 @@ class Forecastday: Codable {
     }
 }
 
-// MARK: - Astro
 class Astro: Codable {
     var sunrise, sunset, moonrise, moonset: String?
     var moonPhase, moonIllumination: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case sunrise, sunset, moonrise, moonset
         case moonPhase = "moon_phase"
         case moonIllumination = "moon_illumination"
     }
-
+    
     init(sunrise: String?, sunset: String?, moonrise: String?, moonset: String?, moonPhase: String?, moonIllumination: String?) {
         self.sunrise = sunrise
         self.sunset = sunset
@@ -177,7 +162,6 @@ class Astro: Codable {
     }
 }
 
-// MARK: - Day
 class Day: Codable {
     var maxtempC, maxtempF, mintempC, mintempF: Double?
     var avgtempC, avgtempF, maxwindMph, maxwindKph: Double?
@@ -186,7 +170,7 @@ class Day: Codable {
     var dailyChanceOfSnow: Int?
     var condition: Condition?
     var uv: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case maxtempC = "maxtemp_c"
         case maxtempF = "maxtemp_f"
@@ -207,7 +191,7 @@ class Day: Codable {
         case dailyChanceOfSnow = "daily_chance_of_snow"
         case condition, uv
     }
-
+    
     init(maxtempC: Double?, maxtempF: Double?, mintempC: Double?, mintempF: Double?, avgtempC: Double?, avgtempF: Double?, maxwindMph: Double?, maxwindKph: Double?, totalprecipMm: Int?, totalprecipIn: Int?, avgvisKM: Int?, avgvisMiles: Int?, avghumidity: Int?, dailyWillItRain: Int?, dailyChanceOfRain: Int?, dailyWillItSnow: Int?, dailyChanceOfSnow: Int?, condition: Condition?, uv: Int?) {
         self.maxtempC = maxtempC
         self.maxtempF = maxtempF
@@ -231,7 +215,6 @@ class Day: Codable {
     }
 }
 
-// MARK: - Hour
 class Hour: Codable {
     var timeEpoch: Int?
     var time: String?
@@ -250,7 +233,7 @@ class Hour: Codable {
     var visKM, visMiles: Int?
     var gustMph, gustKph: Double?
     var uv: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case timeEpoch = "time_epoch"
         case time
@@ -285,7 +268,7 @@ class Hour: Codable {
         case gustKph = "gust_kph"
         case uv
     }
-
+    
     init(timeEpoch: Int?, time: String?, tempC: Double?, tempF: Double?, isDay: Int?, condition: Condition?, windMph: Double?, windKph: Double?, windDegree: Int?, windDir: WindDir?, pressureMB: Int?, pressureIn: Double?, precipMm: Int?, precipIn: Int?, humidity: Int?, cloud: Int?, feelslikeC: Double?, feelslikeF: Double?, windchillC: Double?, windchillF: Double?, heatindexC: Double?, heatindexF: Double?, dewpointC: Double?, dewpointF: Double?, willItRain: Int?, chanceOfRain: Int?, willItSnow: Int?, chanceOfSnow: Int?, visKM: Int?, visMiles: Int?, gustMph: Double?, gustKph: Double?, uv: Int?) {
         self.timeEpoch = timeEpoch
         self.time = time
@@ -323,21 +306,20 @@ class Hour: Codable {
     }
 }
 
-// MARK: - Location
 class Location: Codable {
     var name, region, country: String?
     var lat, lon: Double?
     var tzID: String?
     var localtimeEpoch: Int?
     var localtime: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case name, region, country, lat, lon
         case tzID = "tz_id"
         case localtimeEpoch = "localtime_epoch"
         case localtime
     }
-
+    
     init(name: String?, region: String?, country: String?, lat: Double?, lon: Double?, tzID: String?, localtimeEpoch: Int?, localtime: String?) {
         self.name = name
         self.region = region

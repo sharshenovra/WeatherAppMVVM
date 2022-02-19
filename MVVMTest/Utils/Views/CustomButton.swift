@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 
 class CustomButton: UIButton {
-
+    
     private var onClick: (CustomButton) -> Void = { _ in }
     
     init(title: String) {
