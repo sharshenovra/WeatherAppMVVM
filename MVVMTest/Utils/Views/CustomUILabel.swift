@@ -9,7 +9,7 @@ class CustomUILabel: UILabel{
         
         text = title
         textColor = .white
-        textAlignment = .left
+        textAlignment = .center
         font = UIFont.systemFont(ofSize: fontSize, weight: .light)
         numberOfLines = 0
         layer.shadowOpacity = 0.3

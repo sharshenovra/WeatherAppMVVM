@@ -4,9 +4,9 @@ import Kingfisher
 
 class ForecastCell: UITableViewCell {
     
-    var dayTitle = CustomUILabel(title: "", fontSize: 20)
-    var forecastMinTempTitle = CustomUILabel(title: "", fontSize: 40)
-    var forecastMaxTempTitle = CustomUILabel(title: "", fontSize: 40)
+    var dayTitle = CustomUILabel(title: "", fontSize: 30)
+    var forecastMinTempTitle = CustomUILabel(title: "", fontSize: 30)
+    var forecastMaxTempTitle = CustomUILabel(title: "", fontSize: 30)
     var forecastImage = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,22 +28,21 @@ class ForecastCell: UITableViewCell {
         
         addSubview(forecastImage)
         forecastImage.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().offset(-30)
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().dividedBy(1.5)
-            make.width.equalToSuperview().dividedBy(5)
-        }
-        
-        addSubview(forecastMinTempTitle)
-        forecastMinTempTitle.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(forecastImage.snp.right).offset(8)
+            make.center.equalToSuperview()
+            make.height.equalToSuperview().dividedBy(2)
+            make.width.equalTo(frame.height / 1.5)
         }
         
         addSubview(forecastMaxTempTitle)
         forecastMaxTempTitle.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(forecastMinTempTitle.snp.right).offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
+        
+        addSubview(forecastMinTempTitle)
+        forecastMinTempTitle.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalTo(forecastMaxTempTitle.snp.left).offset(-40)
         }
     }
     

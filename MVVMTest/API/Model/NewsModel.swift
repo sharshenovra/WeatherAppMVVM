@@ -33,8 +33,7 @@ class Current: Codable {
     var precipMm, precipIn, humidity, cloud: Int?
     var feelslikeC, feelslikeF: Double?
     var visKM, visMiles, uv: Int?
-    var gustMph: Double?
-    var gustKph: Int?
+    var gustMph, gustKph: Double?
 
     enum CodingKeys: String, CodingKey {
         case lastUpdatedEpoch = "last_updated_epoch"
@@ -61,7 +60,7 @@ class Current: Codable {
         case gustKph = "gust_kph"
     }
 
-    init(lastUpdatedEpoch: Int?, lastUpdated: String?, tempC: Double?, tempF: Double?, isDay: Int?, condition: Condition?, windMph: Double?, windKph: Double?, windDegree: Int?, windDir: WindDir?, pressureMB: Int?, pressureIn: Double?, precipMm: Int?, precipIn: Int?, humidity: Int?, cloud: Int?, feelslikeC: Double?, feelslikeF: Double?, visKM: Int?, visMiles: Int?, uv: Int?, gustMph: Double?, gustKph: Int?) {
+    init(lastUpdatedEpoch: Int?, lastUpdated: String?, tempC: Double?, tempF: Double?, isDay: Int?, condition: Condition?, windMph: Double?, windKph: Double?, windDegree: Int?, windDir: WindDir?, pressureMB: Int?, pressureIn: Double?, precipMm: Int?, precipIn: Int?, humidity: Int?, cloud: Int?, feelslikeC: Double?, feelslikeF: Double?, visKM: Int?, visMiles: Int?, uv: Int?, gustMph: Double?, gustKph: Double?) {
         self.lastUpdatedEpoch = lastUpdatedEpoch
         self.lastUpdated = lastUpdated
         self.tempC = tempC
@@ -105,7 +104,15 @@ enum Icon: String, Codable {
     case cdnWeatherapiCOMWeather64X64Day113PNG = "//cdn.weatherapi.com/weather/64x64/day/113.png"
     case cdnWeatherapiCOMWeather64X64Night113PNG = "//cdn.weatherapi.com/weather/64x64/night/113.png"
     case cdnWeatherapiCOMWeather64X64Night116PNG = "//cdn.weatherapi.com/weather/64x64/night/116.png"
+    case cdnWeatherapiCOMWeather64X64Night119PNG = "//cdn.weatherapi.com/weather/64x64/night/119.png"
 }
+
+//enum Text: String, Codable {
+//    case clear = "Clear"
+//    case cloudy = "Cloudy"
+//    case partlyCloudy = "Partly cloudy"
+//    case sunny = "Sunny"
+//}
 
 enum WindDir: String, Codable {
     case e = "E"
