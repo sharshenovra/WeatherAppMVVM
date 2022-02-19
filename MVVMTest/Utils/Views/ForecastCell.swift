@@ -51,8 +51,8 @@ class ForecastCell: UITableViewCell {
     }
     
     func fill(model: Day) {
-        forecastMaxTempTitle.text = "\(model.maxtempC!)°"
-        forecastMinTempTitle.text = "\(model.mintempC!)°"
+        forecastMaxTempTitle.text = "\(Int(model.maxtempC!))°"
+        forecastMinTempTitle.text = "\(Int(model.mintempC!))°"
         
         var image = ""
         

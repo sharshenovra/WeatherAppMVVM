@@ -47,7 +47,7 @@ class DailyCell: UICollectionViewCell{
             image = "cloud.rain.fill"
             feelImage.tintColor = UIColor.white
         }
-        tempLabel.text = "\(model.tempC ?? 0.0)"
+        tempLabel.text = "\(Int(model.tempC ?? 0.0))"
         hourLabel.text = hour
         feelImage.image = UIImage(systemName: "\(image)")
     }

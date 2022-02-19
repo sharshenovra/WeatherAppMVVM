@@ -25,7 +25,7 @@ class MainController: UIViewController {
     func setupViews(model: WeatherModel?){
         view.backgroundColor = .systemBlue
         locationLabel.text = "\(model?.location?.name ?? "") \(model?.location?.country ?? "")"
-        tempLabel.text = "\(model?.current?.tempC ?? 0.0)°"
+        tempLabel.text = "\(Int(model?.current?.tempC ?? 0.0))°"
         
         var image = ""
         
