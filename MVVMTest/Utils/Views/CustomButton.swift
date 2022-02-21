@@ -12,6 +12,7 @@ class CustomButton: UIButton {
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        
     }
     
     init(nameImage: String, color: UIColor) {

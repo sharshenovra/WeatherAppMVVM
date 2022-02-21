@@ -1,333 +1,329 @@
 import Foundation
 
-
+// MARK: - WeatherModel
 class WeatherModel: Codable {
-    var location: Location?
-    var current: Current?
-    var forecast: Forecast?
-    
-    init(location: Location?, current: Current?, forecast: Forecast?) {
-        self.location = location
-        self.current = current
-        self.forecast = forecast
-    }
-}
+    var headline: Headline?
+    var dailyForecasts: [DailyForecast]?
 
-
-class Current: Codable {
-    var lastUpdatedEpoch: Int?
-    var lastUpdated: String?
-    var tempC, tempF: Double?
-    var isDay: Int?
-    var condition: Condition?
-    var windMph, windKph: Double?
-    var windDegree: Int?
-    var windDir: WindDir?
-    var pressureMB: Int?
-    var pressureIn: Double?
-    var precipMm, precipIn, humidity, cloud: Int?
-    var feelslikeC, feelslikeF: Double?
-    var visKM, visMiles, uv: Int?
-    var gustMph, gustKph: Double?
-    
     enum CodingKeys: String, CodingKey {
-        case lastUpdatedEpoch = "last_updated_epoch"
-        case lastUpdated = "last_updated"
-        case tempC = "temp_c"
-        case tempF = "temp_f"
-        case isDay = "is_day"
-        case condition
-        case windMph = "wind_mph"
-        case windKph = "wind_kph"
-        case windDegree = "wind_degree"
-        case windDir = "wind_dir"
-        case pressureMB = "pressure_mb"
-        case pressureIn = "pressure_in"
-        case precipMm = "precip_mm"
-        case precipIn = "precip_in"
-        case humidity, cloud
-        case feelslikeC = "feelslike_c"
-        case feelslikeF = "feelslike_f"
-        case visKM = "vis_km"
-        case visMiles = "vis_miles"
-        case uv
-        case gustMph = "gust_mph"
-        case gustKph = "gust_kph"
+        case headline = "Headline"
+        case dailyForecasts = "DailyForecasts"
     }
-    
-    init(lastUpdatedEpoch: Int?, lastUpdated: String?, tempC: Double?, tempF: Double?, isDay: Int?, condition: Condition?, windMph: Double?, windKph: Double?, windDegree: Int?, windDir: WindDir?, pressureMB: Int?, pressureIn: Double?, precipMm: Int?, precipIn: Int?, humidity: Int?, cloud: Int?, feelslikeC: Double?, feelslikeF: Double?, visKM: Int?, visMiles: Int?, uv: Int?, gustMph: Double?, gustKph: Double?) {
-        self.lastUpdatedEpoch = lastUpdatedEpoch
-        self.lastUpdated = lastUpdated
-        self.tempC = tempC
-        self.tempF = tempF
-        self.isDay = isDay
-        self.condition = condition
-        self.windMph = windMph
-        self.windKph = windKph
-        self.windDegree = windDegree
-        self.windDir = windDir
-        self.pressureMB = pressureMB
-        self.pressureIn = pressureIn
-        self.precipMm = precipMm
-        self.precipIn = precipIn
-        self.humidity = humidity
-        self.cloud = cloud
-        self.feelslikeC = feelslikeC
-        self.feelslikeF = feelslikeF
-        self.visKM = visKM
-        self.visMiles = visMiles
-        self.uv = uv
-        self.gustMph = gustMph
-        self.gustKph = gustKph
+
+    init(headline: Headline?, dailyForecasts: [DailyForecast]?) {
+        self.headline = headline
+        self.dailyForecasts = dailyForecasts
     }
 }
 
-class Condition: Codable {
-    var text: String?
-    var icon: Icon?
-    var code: Int?
-    
-    init(text: String?, icon: Icon?, code: Int?) {
-        self.text = text
-        self.icon = icon
-        self.code = code
-    }
-}
-
-enum Icon: String, Codable {
-    case cdnWeatherapiCOMWeather64X64Day113PNG = "//cdn.weatherapi.com/weather/64x64/day/113.png"
-    case cdnWeatherapiCOMWeather64X64Night113PNG = "//cdn.weatherapi.com/weather/64x64/night/113.png"
-    case cdnWeatherapiCOMWeather64X64Night116PNG = "//cdn.weatherapi.com/weather/64x64/night/116.png"
-    case cdnWeatherapiCOMWeather64X64Night119PNG = "//cdn.weatherapi.com/weather/64x64/night/119.png"
-}
-
-enum WindDir: String, Codable {
-    case e = "E"
-    case ene = "ENE"
-    case ese = "ESE"
-    case ne = "NE"
-    case s = "S"
-    case se = "SE"
-    case sse = "SSE"
-}
-
-class Forecast: Codable {
-    var forecastday: [Forecastday]?
-    
-    init(forecastday: [Forecastday]?) {
-        self.forecastday = forecastday
-    }
-}
-
-
-class Forecastday: Codable {
+// MARK: - DailyForecast
+class DailyForecast: Codable {
     var date: String?
-    var dateEpoch: Int?
-    var day: Day?
-    var astro: Astro?
-    var hour: [Hour]?
-    
+    var epochDate: Int?
+    var sun: Sun?
+    var moon: Moon?
+    var temperature, realFeelTemperature, realFeelTemperatureShade: RealFeelTemperature?
+    var hoursOfSun: Double?
+    var degreeDaySummary: DegreeDaySummary?
+    var airAndPollen: [AirAndPollen]?
+    var day, night: Day?
+    var sources: [String]?
+    var mobileLink, link: String?
+
     enum CodingKeys: String, CodingKey {
-        case date
-        case dateEpoch = "date_epoch"
-        case day, astro, hour
+        case date = "Date"
+        case epochDate = "EpochDate"
+        case sun = "Sun"
+        case moon = "Moon"
+        case temperature = "Temperature"
+        case realFeelTemperature = "RealFeelTemperature"
+        case realFeelTemperatureShade = "RealFeelTemperatureShade"
+        case hoursOfSun = "HoursOfSun"
+        case degreeDaySummary = "DegreeDaySummary"
+        case airAndPollen = "AirAndPollen"
+        case day = "Day"
+        case night = "Night"
+        case sources = "Sources"
+        case mobileLink = "MobileLink"
+        case link = "Link"
     }
-    
-    init(date: String?, dateEpoch: Int?, day: Day?, astro: Astro?, hour: [Hour]?) {
+
+    init(date: String?, epochDate: Int?, sun: Sun?, moon: Moon?, temperature: RealFeelTemperature?, realFeelTemperature: RealFeelTemperature?, realFeelTemperatureShade: RealFeelTemperature?, hoursOfSun: Double?, degreeDaySummary: DegreeDaySummary?, airAndPollen: [AirAndPollen]?, day: Day?, night: Day?, sources: [String]?, mobileLink: String?, link: String?) {
         self.date = date
-        self.dateEpoch = dateEpoch
+        self.epochDate = epochDate
+        self.sun = sun
+        self.moon = moon
+        self.temperature = temperature
+        self.realFeelTemperature = realFeelTemperature
+        self.realFeelTemperatureShade = realFeelTemperatureShade
+        self.hoursOfSun = hoursOfSun
+        self.degreeDaySummary = degreeDaySummary
+        self.airAndPollen = airAndPollen
         self.day = day
-        self.astro = astro
-        self.hour = hour
+        self.night = night
+        self.sources = sources
+        self.mobileLink = mobileLink
+        self.link = link
     }
 }
 
-class Astro: Codable {
-    var sunrise, sunset, moonrise, moonset: String?
-    var moonPhase, moonIllumination: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case sunrise, sunset, moonrise, moonset
-        case moonPhase = "moon_phase"
-        case moonIllumination = "moon_illumination"
-    }
-    
-    init(sunrise: String?, sunset: String?, moonrise: String?, moonset: String?, moonPhase: String?, moonIllumination: String?) {
-        self.sunrise = sunrise
-        self.sunset = sunset
-        self.moonrise = moonrise
-        self.moonset = moonset
-        self.moonPhase = moonPhase
-        self.moonIllumination = moonIllumination
-    }
-}
+// MARK: - AirAndPollen
+class AirAndPollen: Codable {
+    var name: String?
+    var value: Int?
+    var category: String?
+    var categoryValue: Int?
+    var type: String?
 
-class Day: Codable {
-    var maxtempC, maxtempF, mintempC, mintempF: Double?
-    var avgtempC, avgtempF, maxwindMph, maxwindKph: Double?
-    var totalprecipMm, totalprecipIn, avgvisKM, avgvisMiles: Int?
-    var avghumidity, dailyWillItRain, dailyChanceOfRain, dailyWillItSnow: Int?
-    var dailyChanceOfSnow: Int?
-    var condition: Condition?
-    var uv: Int?
-    
     enum CodingKeys: String, CodingKey {
-        case maxtempC = "maxtemp_c"
-        case maxtempF = "maxtemp_f"
-        case mintempC = "mintemp_c"
-        case mintempF = "mintemp_f"
-        case avgtempC = "avgtemp_c"
-        case avgtempF = "avgtemp_f"
-        case maxwindMph = "maxwind_mph"
-        case maxwindKph = "maxwind_kph"
-        case totalprecipMm = "totalprecip_mm"
-        case totalprecipIn = "totalprecip_in"
-        case avgvisKM = "avgvis_km"
-        case avgvisMiles = "avgvis_miles"
-        case avghumidity
-        case dailyWillItRain = "daily_will_it_rain"
-        case dailyChanceOfRain = "daily_chance_of_rain"
-        case dailyWillItSnow = "daily_will_it_snow"
-        case dailyChanceOfSnow = "daily_chance_of_snow"
-        case condition, uv
+        case name = "Name"
+        case value = "Value"
+        case category = "Category"
+        case categoryValue = "CategoryValue"
+        case type = "Type"
     }
-    
-    init(maxtempC: Double?, maxtempF: Double?, mintempC: Double?, mintempF: Double?, avgtempC: Double?, avgtempF: Double?, maxwindMph: Double?, maxwindKph: Double?, totalprecipMm: Int?, totalprecipIn: Int?, avgvisKM: Int?, avgvisMiles: Int?, avghumidity: Int?, dailyWillItRain: Int?, dailyChanceOfRain: Int?, dailyWillItSnow: Int?, dailyChanceOfSnow: Int?, condition: Condition?, uv: Int?) {
-        self.maxtempC = maxtempC
-        self.maxtempF = maxtempF
-        self.mintempC = mintempC
-        self.mintempF = mintempF
-        self.avgtempC = avgtempC
-        self.avgtempF = avgtempF
-        self.maxwindMph = maxwindMph
-        self.maxwindKph = maxwindKph
-        self.totalprecipMm = totalprecipMm
-        self.totalprecipIn = totalprecipIn
-        self.avgvisKM = avgvisKM
-        self.avgvisMiles = avgvisMiles
-        self.avghumidity = avghumidity
-        self.dailyWillItRain = dailyWillItRain
-        self.dailyChanceOfRain = dailyChanceOfRain
-        self.dailyWillItSnow = dailyWillItSnow
-        self.dailyChanceOfSnow = dailyChanceOfSnow
-        self.condition = condition
-        self.uv = uv
-    }
-}
 
-class Hour: Codable {
-    var timeEpoch: Int?
-    var time: String?
-    var tempC, tempF: Double?
-    var isDay: Int?
-    var condition: Condition?
-    var windMph, windKph: Double?
-    var windDegree: Int?
-    var windDir: WindDir?
-    var pressureMB: Int?
-    var pressureIn: Double?
-    var precipMm, precipIn, humidity, cloud: Int?
-    var feelslikeC, feelslikeF, windchillC, windchillF: Double?
-    var heatindexC, heatindexF, dewpointC, dewpointF: Double?
-    var willItRain, chanceOfRain, willItSnow, chanceOfSnow: Int?
-    var visKM, visMiles: Int?
-    var gustMph, gustKph: Double?
-    var uv: Int?
-    
-    enum CodingKeys: String, CodingKey {
-        case timeEpoch = "time_epoch"
-        case time
-        case tempC = "temp_c"
-        case tempF = "temp_f"
-        case isDay = "is_day"
-        case condition
-        case windMph = "wind_mph"
-        case windKph = "wind_kph"
-        case windDegree = "wind_degree"
-        case windDir = "wind_dir"
-        case pressureMB = "pressure_mb"
-        case pressureIn = "pressure_in"
-        case precipMm = "precip_mm"
-        case precipIn = "precip_in"
-        case humidity, cloud
-        case feelslikeC = "feelslike_c"
-        case feelslikeF = "feelslike_f"
-        case windchillC = "windchill_c"
-        case windchillF = "windchill_f"
-        case heatindexC = "heatindex_c"
-        case heatindexF = "heatindex_f"
-        case dewpointC = "dewpoint_c"
-        case dewpointF = "dewpoint_f"
-        case willItRain = "will_it_rain"
-        case chanceOfRain = "chance_of_rain"
-        case willItSnow = "will_it_snow"
-        case chanceOfSnow = "chance_of_snow"
-        case visKM = "vis_km"
-        case visMiles = "vis_miles"
-        case gustMph = "gust_mph"
-        case gustKph = "gust_kph"
-        case uv
-    }
-    
-    init(timeEpoch: Int?, time: String?, tempC: Double?, tempF: Double?, isDay: Int?, condition: Condition?, windMph: Double?, windKph: Double?, windDegree: Int?, windDir: WindDir?, pressureMB: Int?, pressureIn: Double?, precipMm: Int?, precipIn: Int?, humidity: Int?, cloud: Int?, feelslikeC: Double?, feelslikeF: Double?, windchillC: Double?, windchillF: Double?, heatindexC: Double?, heatindexF: Double?, dewpointC: Double?, dewpointF: Double?, willItRain: Int?, chanceOfRain: Int?, willItSnow: Int?, chanceOfSnow: Int?, visKM: Int?, visMiles: Int?, gustMph: Double?, gustKph: Double?, uv: Int?) {
-        self.timeEpoch = timeEpoch
-        self.time = time
-        self.tempC = tempC
-        self.tempF = tempF
-        self.isDay = isDay
-        self.condition = condition
-        self.windMph = windMph
-        self.windKph = windKph
-        self.windDegree = windDegree
-        self.windDir = windDir
-        self.pressureMB = pressureMB
-        self.pressureIn = pressureIn
-        self.precipMm = precipMm
-        self.precipIn = precipIn
-        self.humidity = humidity
-        self.cloud = cloud
-        self.feelslikeC = feelslikeC
-        self.feelslikeF = feelslikeF
-        self.windchillC = windchillC
-        self.windchillF = windchillF
-        self.heatindexC = heatindexC
-        self.heatindexF = heatindexF
-        self.dewpointC = dewpointC
-        self.dewpointF = dewpointF
-        self.willItRain = willItRain
-        self.chanceOfRain = chanceOfRain
-        self.willItSnow = willItSnow
-        self.chanceOfSnow = chanceOfSnow
-        self.visKM = visKM
-        self.visMiles = visMiles
-        self.gustMph = gustMph
-        self.gustKph = gustKph
-        self.uv = uv
-    }
-}
-
-class Location: Codable {
-    var name, region, country: String?
-    var lat, lon: Double?
-    var tzID: String?
-    var localtimeEpoch: Int?
-    var localtime: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case name, region, country, lat, lon
-        case tzID = "tz_id"
-        case localtimeEpoch = "localtime_epoch"
-        case localtime
-    }
-    
-    init(name: String?, region: String?, country: String?, lat: Double?, lon: Double?, tzID: String?, localtimeEpoch: Int?, localtime: String?) {
+    init(name: String?, value: Int?, category: String?, categoryValue: Int?, type: String?) {
         self.name = name
-        self.region = region
-        self.country = country
-        self.lat = lat
-        self.lon = lon
-        self.tzID = tzID
-        self.localtimeEpoch = localtimeEpoch
-        self.localtime = localtime
+        self.value = value
+        self.category = category
+        self.categoryValue = categoryValue
+        self.type = type
+    }
+}
+
+// MARK: - Day
+class Day: Codable {
+    var icon: Int?
+    var iconPhrase: String?
+    var hasPrecipitation: Bool?
+    var shortPhrase, longPhrase: String?
+    var precipitationProbability, thunderstormProbability, rainProbability, snowProbability: Int?
+    var iceProbability: Int?
+    var wind, windGust: Wind?
+    var totalLiquid, rain, snow, ice: Evapotranspiration?
+    var hoursOfPrecipitation, hoursOfRain, hoursOfSnow, hoursOfIce: Int?
+    var cloudCover: Int?
+    var evapotranspiration, solarIrradiance: Evapotranspiration?
+
+    enum CodingKeys: String, CodingKey {
+        case icon = "Icon"
+        case iconPhrase = "IconPhrase"
+        case hasPrecipitation = "HasPrecipitation"
+        case shortPhrase = "ShortPhrase"
+        case longPhrase = "LongPhrase"
+        case precipitationProbability = "PrecipitationProbability"
+        case thunderstormProbability = "ThunderstormProbability"
+        case rainProbability = "RainProbability"
+        case snowProbability = "SnowProbability"
+        case iceProbability = "IceProbability"
+        case wind = "Wind"
+        case windGust = "WindGust"
+        case totalLiquid = "TotalLiquid"
+        case rain = "Rain"
+        case snow = "Snow"
+        case ice = "Ice"
+        case hoursOfPrecipitation = "HoursOfPrecipitation"
+        case hoursOfRain = "HoursOfRain"
+        case hoursOfSnow = "HoursOfSnow"
+        case hoursOfIce = "HoursOfIce"
+        case cloudCover = "CloudCover"
+        case evapotranspiration = "Evapotranspiration"
+        case solarIrradiance = "SolarIrradiance"
+    }
+
+    init(icon: Int?, iconPhrase: String?, hasPrecipitation: Bool?, shortPhrase: String?, longPhrase: String?, precipitationProbability: Int?, thunderstormProbability: Int?, rainProbability: Int?, snowProbability: Int?, iceProbability: Int?, wind: Wind?, windGust: Wind?, totalLiquid: Evapotranspiration?, rain: Evapotranspiration?, snow: Evapotranspiration?, ice: Evapotranspiration?, hoursOfPrecipitation: Int?, hoursOfRain: Int?, hoursOfSnow: Int?, hoursOfIce: Int?, cloudCover: Int?, evapotranspiration: Evapotranspiration?, solarIrradiance: Evapotranspiration?) {
+        self.icon = icon
+        self.iconPhrase = iconPhrase
+        self.hasPrecipitation = hasPrecipitation
+        self.shortPhrase = shortPhrase
+        self.longPhrase = longPhrase
+        self.precipitationProbability = precipitationProbability
+        self.thunderstormProbability = thunderstormProbability
+        self.rainProbability = rainProbability
+        self.snowProbability = snowProbability
+        self.iceProbability = iceProbability
+        self.wind = wind
+        self.windGust = windGust
+        self.totalLiquid = totalLiquid
+        self.rain = rain
+        self.snow = snow
+        self.ice = ice
+        self.hoursOfPrecipitation = hoursOfPrecipitation
+        self.hoursOfRain = hoursOfRain
+        self.hoursOfSnow = hoursOfSnow
+        self.hoursOfIce = hoursOfIce
+        self.cloudCover = cloudCover
+        self.evapotranspiration = evapotranspiration
+        self.solarIrradiance = solarIrradiance
+    }
+}
+
+// MARK: - Evapotranspiration
+class Evapotranspiration: Codable {
+    var value: Double?
+    var unit: String?
+    var unitType: Int?
+    var phrase: String?
+
+    enum CodingKeys: String, CodingKey {
+        case value = "Value"
+        case unit = "Unit"
+        case unitType = "UnitType"
+        case phrase = "Phrase"
+    }
+
+    init(value: Double?, unit: String?, unitType: Int?, phrase: String?) {
+        self.value = value
+        self.unit = unit
+        self.unitType = unitType
+        self.phrase = phrase
+    }
+}
+
+// MARK: - Wind
+class Wind: Codable {
+    var speed: Evapotranspiration?
+    var direction: Direction?
+
+    enum CodingKeys: String, CodingKey {
+        case speed = "Speed"
+        case direction = "Direction"
+    }
+
+    init(speed: Evapotranspiration?, direction: Direction?) {
+        self.speed = speed
+        self.direction = direction
+    }
+}
+
+// MARK: - Direction
+class Direction: Codable {
+    var degrees: Int?
+    var localized, english: String?
+
+    enum CodingKeys: String, CodingKey {
+        case degrees = "Degrees"
+        case localized = "Localized"
+        case english = "English"
+    }
+
+    init(degrees: Int?, localized: String?, english: String?) {
+        self.degrees = degrees
+        self.localized = localized
+        self.english = english
+    }
+}
+
+// MARK: - DegreeDaySummary
+class DegreeDaySummary: Codable {
+    var heating, cooling: Evapotranspiration?
+
+    enum CodingKeys: String, CodingKey {
+        case heating = "Heating"
+        case cooling = "Cooling"
+    }
+
+    init(heating: Evapotranspiration?, cooling: Evapotranspiration?) {
+        self.heating = heating
+        self.cooling = cooling
+    }
+}
+
+// MARK: - Moon
+class Moon: Codable {
+    var rise: String?
+    var epochRise: Int?
+    var moonSet: String?
+    var epochSet: Int?
+    var phase: String?
+    var age: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case rise = "Rise"
+        case epochRise = "EpochRise"
+        case moonSet = "Set"
+        case epochSet = "EpochSet"
+        case phase = "Phase"
+        case age = "Age"
+    }
+
+    init(rise: String?, epochRise: Int?, moonSet: String?, epochSet: Int?, phase: String?, age: Int?) {
+        self.rise = rise
+        self.epochRise = epochRise
+        self.moonSet = moonSet
+        self.epochSet = epochSet
+        self.phase = phase
+        self.age = age
+    }
+}
+
+// MARK: - RealFeelTemperature
+class RealFeelTemperature: Codable {
+    var minimum, maximum: Evapotranspiration?
+
+    enum CodingKeys: String, CodingKey {
+        case minimum = "Minimum"
+        case maximum = "Maximum"
+    }
+
+    init(minimum: Evapotranspiration?, maximum: Evapotranspiration?) {
+        self.minimum = minimum
+        self.maximum = maximum
+    }
+}
+
+// MARK: - Sun
+class Sun: Codable {
+    var rise: String?
+    var epochRise: Int?
+    var sunSet: String?
+    var epochSet: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case rise = "Rise"
+        case epochRise = "EpochRise"
+        case sunSet = "Set"
+        case epochSet = "EpochSet"
+    }
+
+    init(rise: String?, epochRise: Int?, sunSet: String?, epochSet: Int?) {
+        self.rise = rise
+        self.epochRise = epochRise
+        self.sunSet = sunSet
+        self.epochSet = epochSet
+    }
+}
+
+// MARK: - Headline
+class Headline: Codable {
+    var effectiveDate: String?
+    var effectiveEpochDate, severity: Int?
+    var text, category, endDate: String?
+    var endEpochDate: Int?
+    var mobileLink, link: String?
+
+    enum CodingKeys: String, CodingKey {
+        case effectiveDate = "EffectiveDate"
+        case effectiveEpochDate = "EffectiveEpochDate"
+        case severity = "Severity"
+        case text = "Text"
+        case category = "Category"
+        case endDate = "EndDate"
+        case endEpochDate = "EndEpochDate"
+        case mobileLink = "MobileLink"
+        case link = "Link"
+    }
+
+    init(effectiveDate: String?, effectiveEpochDate: Int?, severity: Int?, text: String?, category: String?, endDate: String?, endEpochDate: Int?, mobileLink: String?, link: String?) {
+        self.effectiveDate = effectiveDate
+        self.effectiveEpochDate = effectiveEpochDate
+        self.severity = severity
+        self.text = text
+        self.category = category
+        self.endDate = endDate
+        self.endEpochDate = endEpochDate
+        self.mobileLink = mobileLink
+        self.link = link
     }
 }

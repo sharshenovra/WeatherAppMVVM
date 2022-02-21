@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		31C9C782D3EB6598F69BAC34 /* Pods_MVVMTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE9C666C1BC469BEB8BDC13 /* Pods_MVVMTest.framework */; };
+		602C3A7927C28F16002613CF /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C3A7827C28F16002613CF /* SplashController.swift */; };
+		602C3A7C27C28F74002613CF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C3A7B27C28F74002613CF /* SearchController.swift */; };
+		602C3A7E27C29046002613CF /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C3A7D27C29046002613CF /* SearchModel.swift */; };
+		602C3A8027C290B6002613CF /* SearchCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602C3A7F27C290B6002613CF /* SearchCityCell.swift */; };
 		604B197427C094B700789A2F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604B197327C094B700789A2F /* CustomButton.swift */; };
 		604B197627C094D000789A2F /* CustomUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604B197527C094D000789A2F /* CustomUILabel.swift */; };
 		6066EF1B27C09B0200762EF4 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066EF1A27C09B0200762EF4 /* UIExtension.swift */; };
@@ -25,10 +29,16 @@
 		607A09EF27BFD6D200E2BAA4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A09EE27BFD6D200E2BAA4 /* MainViewModel.swift */; };
 		607A09F227BFDB0200E2BAA4 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A09F127BFDB0200E2BAA4 /* ApiClient.swift */; };
 		607A09F527BFDB6400E2BAA4 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A09F427BFDB6400E2BAA4 /* NewsModel.swift */; };
+		60E0436F27C334950073FC51 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E0436E27C334950073FC51 /* SearchViewModel.swift */; };
+		60E0437127C3372F0073FC51 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E0437027C3372F0073FC51 /* SearchTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5AB5D9DCF789CF95B4B1C3D7 /* Pods-MVVMTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMTest.debug.xcconfig"; path = "Target Support Files/Pods-MVVMTest/Pods-MVVMTest.debug.xcconfig"; sourceTree = "<group>"; };
+		602C3A7827C28F16002613CF /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
+		602C3A7B27C28F74002613CF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		602C3A7D27C29046002613CF /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		602C3A7F27C290B6002613CF /* SearchCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityCell.swift; sourceTree = "<group>"; };
 		604B197327C094B700789A2F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		604B197527C094D000789A2F /* CustomUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUILabel.swift; sourceTree = "<group>"; };
 		6066EF1A27C09B0200762EF4 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
@@ -48,6 +58,8 @@
 		607A09EE27BFD6D200E2BAA4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		607A09F127BFDB0200E2BAA4 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		607A09F427BFDB6400E2BAA4 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		60E0436E27C334950073FC51 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		60E0437027C3372F0073FC51 /* SearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		BDF05236EAB0CA62C907EFF6 /* Pods-MVVMTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMTest.release.xcconfig"; path = "Target Support Files/Pods-MVVMTest/Pods-MVVMTest.release.xcconfig"; sourceTree = "<group>"; };
 		EDE9C666C1BC469BEB8BDC13 /* Pods_MVVMTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVMTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +85,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		602C3A7727C28F01002613CF /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				602C3A7827C28F16002613CF /* SplashController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		602C3A7A27C28F62002613CF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				602C3A7B27C28F74002613CF /* SearchController.swift */,
+				60E0436E27C334950073FC51 /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		604B197127C094A400789A2F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +121,8 @@
 				6071BC6A27C0EB2B00C1826D /* DailyCollectionView.swift */,
 				6071BC6C27C0EC1E00C1826D /* DailyCell.swift */,
 				6071BC6E27C1166C00C1826D /* DetailDailyCell.swift */,
+				602C3A7F27C290B6002613CF /* SearchCityCell.swift */,
+				60E0437027C3372F0073FC51 /* SearchTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +164,8 @@
 		607A09EC27BFD6C000E2BAA4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				602C3A7A27C28F62002613CF /* Search */,
+				602C3A7727C28F01002613CF /* Splash */,
 				607A09ED27BFD6C500E2BAA4 /* Main */,
 			);
 			path = UI;
@@ -141,8 +174,8 @@
 		607A09ED27BFD6C500E2BAA4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				607A09EE27BFD6D200E2BAA4 /* MainViewModel.swift */,
 				607A09DC27BFD68200E2BAA4 /* MainController.swift */,
+				607A09EE27BFD6D200E2BAA4 /* MainViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -160,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				607A09F427BFDB6400E2BAA4 /* NewsModel.swift */,
+				602C3A7D27C29046002613CF /* SearchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,19 +321,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602C3A7927C28F16002613CF /* SplashController.swift in Sources */,
+				60E0437127C3372F0073FC51 /* SearchTableView.swift in Sources */,
 				607A09F527BFDB6400E2BAA4 /* NewsModel.swift in Sources */,
 				607A09DD27BFD68200E2BAA4 /* MainController.swift in Sources */,
 				6071BC6B27C0EB2B00C1826D /* DailyCollectionView.swift in Sources */,
+				60E0436F27C334950073FC51 /* SearchViewModel.swift in Sources */,
 				6066EF1F27C0AFA100762EF4 /* ForecastCell.swift in Sources */,
 				607A09D927BFD68200E2BAA4 /* AppDelegate.swift in Sources */,
 				607A09DB27BFD68200E2BAA4 /* SceneDelegate.swift in Sources */,
 				6066EF1B27C09B0200762EF4 /* UIExtension.swift in Sources */,
 				604B197427C094B700789A2F /* CustomButton.swift in Sources */,
 				6071BC6F27C1166C00C1826D /* DetailDailyCell.swift in Sources */,
+				602C3A7E27C29046002613CF /* SearchModel.swift in Sources */,
 				6066EF1D27C0AEFF00762EF4 /* ForecastTableView.swift in Sources */,
+				602C3A7C27C28F74002613CF /* SearchController.swift in Sources */,
 				6071BC6D27C0EC1E00C1826D /* DailyCell.swift in Sources */,
 				607A09EF27BFD6D200E2BAA4 /* MainViewModel.swift in Sources */,
 				607A09F227BFDB0200E2BAA4 /* ApiClient.swift in Sources */,
+				602C3A8027C290B6002613CF /* SearchCityCell.swift in Sources */,
 				604B197627C094D000789A2F /* CustomUILabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

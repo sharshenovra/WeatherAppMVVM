@@ -6,9 +6,13 @@ class MainController: UIViewController {
     
     private lazy var locationLabel = CustomUILabel(title: "", fontSize: 30)
     private lazy var tempLabel = CustomUILabel(title: "" , fontSize: 70)
-    private lazy var feelImage = UIImageView()
+    private lazy var feelImage: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
     private lazy var forecastTableView = ForecastTableView()
-    
+    private lazy var changeCityButton = CustomButton(title: "Edit")
     
     private lazy var viewModel: MainViewModel = {
         return MainViewModel(delegate: self)
@@ -18,30 +22,34 @@ class MainController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getWeather()
         setupConstraints()
+        viewModel.getWeather()
     }
     
     func setupViews(model: WeatherModel?){
-        view.backgroundColor = .systemBlue
-        locationLabel.text = "\(model?.location?.name ?? "") \(model?.location?.country ?? "")"
-        tempLabel.text = "\(Int(model?.current?.tempC ?? 0.0))°"
+        view.backgroundColor = .black
+        locationLabel.text = UserDefaults.standard.string(forKey: "CityName")
+        tempLabel.text = "\(Int(model?.dailyForecasts?[0].temperature?.maximum?.value ?? 0.0))°"
         
-        var image = ""
+        let icon = model?.dailyForecasts![0].day?.icon
         
-        if model?.current?.condition?.text == "Sunny"{
-            image = "sun.max.fill"
-            feelImage.tintColor = UIColor.yellow
-        }else if model?.current?.condition?.text == "Clear"{
-            image = "cloud.fill"
-            feelImage.tintColor = UIColor.white
-        }else{
-            image = "cloud.rain.fill"
+        if (icon ?? 0) > 9 {
+            feelImage.kf.setImage(with: URL(string: "https://developer.accuweather.com/sites/default/files/\((icon ?? 0))-s.png")!)
+        } else {
+            feelImage.kf.setImage(with: URL(string: "https://developer.accuweather.com/sites/default/files/0\((icon ?? 0))-s.png")!)
         }
-        feelImage.image = UIImage(systemName: image)
+        changeCityButton.setOnClickListener { view in
+            self.navigationController?.pushViewController(SearchController(), animated: true)
+        }
     }
     
     func setupConstraints(){
+        view.addSubview(changeCityButton)
+        changeCityButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeArea.top)
+            make.right.equalToSuperview().offset(-8)
+        }
+        
         view.addSubview(locationLabel)
         locationLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeArea.top)

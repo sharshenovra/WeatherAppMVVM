@@ -1,75 +1,61 @@
-import Foundation
+import UIKit
 import SnapKit
 import Kingfisher
 
 class ForecastCell: UITableViewCell {
     
-    var dayTitle = CustomUILabel(title: "", fontSize: 30)
-    var forecastMinTempTitle = CustomUILabel(title: "", fontSize: 30)
-    var forecastMaxTempTitle = CustomUILabel(title: "", fontSize: 30)
-    var forecastImage = UIImageView()
+    private lazy var dayTempLabel: UILabel = {
+        let view = UILabel()
+        view.textColor = .white
+        view.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        view.text = "15° day"
+        return view
+    }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.systemBlue
-        
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.systemBlue.cgColor
-        
-        selectionStyle = UITableViewCell.SelectionStyle.none
-        accessoryType = isSelected ? .checkmark : .none
-        selectionStyle = .none
-        
-        addSubview(dayTitle)
-        dayTitle.snp.makeConstraints { make in
+    private lazy var nightTempLabel: UILabel = {
+        let view = UILabel()
+        view.textColor = .white
+        view.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        view.text = "night -1°"
+        return view
+    }()
+    
+    private lazy var weatherIcon: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+    
+    override func layoutSubviews() {
+        addSubview(dayTempLabel)
+        dayTempLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(8)
-            make.right.equalTo(contentView.snp.centerX)
         }
         
-        addSubview(forecastImage)
-        forecastImage.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(dayTitle.snp.right).offset(8)
-            make.height.equalToSuperview().dividedBy(2)
-            make.width.equalTo(contentView.frame.height / 1.5)
-        }
-        
-        addSubview(forecastMaxTempTitle)
-        forecastMaxTempTitle.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+        addSubview(nightTempLabel)
+        nightTempLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-16)
-        }
-        
-        addSubview(forecastMinTempTitle)
-        forecastMinTempTitle.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalTo(forecastMaxTempTitle.snp.left).offset(-30)
+        }
+        
+        addSubview(weatherIcon)
+        weatherIcon.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(40)
         }
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func fill(model: Day) {
-        forecastMaxTempTitle.text = "\(Int(model.maxtempC!))°"
-        forecastMinTempTitle.text = "\(Int(model.mintempC!))°"
-        
-        var image = ""
-        
-        if model.condition?.text == "Sunny"{
-            image = "sun.max.fill"
-            forecastImage.tintColor = UIColor.yellow
-        }else if model.condition?.text == "Clear"{
-            image = "cloud.fill"
-            forecastImage.tintColor = UIColor.white
-        }else{
-            image = "cloud.rain.fill"
+    func fill(dayOne: DailyForecast?) {
+            dayTempLabel.text = "\(dayOne?.temperature?.maximum?.value ?? 0) °C"
+            
+            nightTempLabel.text = "\(dayOne?.temperature?.minimum?.value ?? 0) °C"
+            
+            let icon = dayOne?.night?.icon
+            
+            if (icon ?? 0) > 9 {
+                weatherIcon.kf.setImage(with: URL(string: "https://developer.accuweather.com/sites/default/files/\((icon ?? 0))-s.png")!)
+            } else {
+                weatherIcon.kf.setImage(with: URL(string: "https://developer.accuweather.com/sites/default/files/0\((icon ?? 0))-s.png")!)
+            }
         }
-        forecastImage.image = UIImage(systemName: image)
-    }
-    
 }
-
-
