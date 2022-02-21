@@ -80,6 +80,12 @@ class MainController: UIViewController {
 }
 
 extension MainController: MainDelegate{
+    func showHourly(model: [HourlyModelElement]?) {
+        DispatchQueue.main.async {
+            self.forecastTableView.fillfull(model: model)
+        }
+    }
+    
     func showWeather(model: WeatherModel?) {
         DispatchQueue.main.async {
             self.models = model

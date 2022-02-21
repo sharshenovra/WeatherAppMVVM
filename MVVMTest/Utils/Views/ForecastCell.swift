@@ -46,9 +46,9 @@ class ForecastCell: UITableViewCell {
         }
     }
     func fill(dayOne: DailyForecast?) {
-            dayTempLabel.text = "\(dayOne?.temperature?.maximum?.value ?? 0) °C"
+            dayTempLabel.text = "\(Int(dayOne?.temperature?.maximum?.value ?? 0)) °C"
             
-            nightTempLabel.text = "\(dayOne?.temperature?.minimum?.value ?? 0) °C"
+            nightTempLabel.text = "\(Int(dayOne?.temperature?.minimum?.value ?? 0)) °C"
             
             let icon = dayOne?.night?.icon
             

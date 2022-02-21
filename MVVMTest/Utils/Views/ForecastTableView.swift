@@ -8,9 +8,9 @@ class ForecastTableView: UIView{
         let view = UITableView()
         view.delegate = self
         view.dataSource = self
-        view.backgroundColor = UIColor(red: 135 / 255, green: 206 / 255, blue: 250 / 255, alpha: 1)
+        view.backgroundColor = .black
         view.register(ForecastCell.self, forCellReuseIdentifier: "ForecastCell")
-//        view.register(CustomDailyCell.self, forCellReuseIdentifier: "CustomDailyCell")
+        view.register(CustomDailyCell.self, forCellReuseIdentifier: "CustomDailyCell")
         view.register(DetailDailyCell.self, forCellReuseIdentifier: "DetailDailyCell")
         view.showsVerticalScrollIndicator = false
         return view
@@ -28,17 +28,22 @@ class ForecastTableView: UIView{
     
     private var models: [DailyForecast]? = nil
     private var modelsToCellection: WeatherModel? = nil
+    private var modelsHourly: [HourlyModelElement]? = nil
     
     func fill(models: WeatherModel?) {
         self.models = models?.dailyForecasts
         self.modelsToCellection = models
         forecastTableView.reloadData()
     }
+    func fillfull(model: [HourlyModelElement]?){
+        self.modelsHourly = model
+        forecastTableView.reloadData()
+    }
 }
 
 extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (models?.count ?? 0) + 1
+        return (models?.count ?? 0) + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,6 +58,10 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
             }
             
             return cell
+        }else if indexPath.row == models?.count{
+            let cell = forecastTableView.dequeueReusableCell(withIdentifier: "CustomDailyCell") as! CustomDailyCell
+            cell.fill(models: modelsHourly)
+            return cell
         }else{
             let cell = forecastTableView.dequeueReusableCell(withIdentifier: "DetailDailyCell") as! DetailDailyCell
             if let model = modelsToCellection?.dailyForecasts?[0].day {
@@ -63,6 +72,9 @@ extension ForecastTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if indexPath.row >= 0 && indexPath.row <= models?.count ?? 0{
+            return 100
+        }
+        return 150
     }
 }

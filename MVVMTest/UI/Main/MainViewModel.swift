@@ -2,6 +2,7 @@ import Foundation
 
 protocol MainDelegate: AnyObject{
     func showWeather(model: WeatherModel?)
+    func showHourly(model: [HourlyModelElement]?)
 }
 
 class MainViewModel{
@@ -18,6 +19,9 @@ class MainViewModel{
     func getWeather(){
         ApiClient.shared.getWeather { model in
             self.delegate?.showWeather(model: model)
+        }
+        ApiClient.shared.getHourly { model in
+            self.delegate?.showHourly(model: model)
         }
     }
 }

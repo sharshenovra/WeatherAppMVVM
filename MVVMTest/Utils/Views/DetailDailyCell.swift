@@ -84,7 +84,7 @@ class DetailDailyCell: UITableViewCell{
         windImage.image = UIImage(systemName: "wind")
         windDirectionImage.image = UIImage(systemName: "dial.min")
         solarIrradianceImage.image = UIImage(systemName: "humidity")
-        rainChanceImage.image = UIImage(systemName: "eye")
+        rainChanceImage.image = UIImage(systemName: "rain")
         
         windImage.tintColor = .white
         windDirectionImage.tintColor = .white
