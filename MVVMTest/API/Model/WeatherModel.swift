@@ -1,3 +1,8 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let weatherModel = try? newJSONDecoder().decode(WeatherModel.self, from: jsonData)
+
 import Foundation
 
 // MARK: - WeatherModel
@@ -102,9 +107,10 @@ class Day: Codable {
     var iceProbability: Int?
     var wind, windGust: Wind?
     var totalLiquid, rain, snow, ice: Evapotranspiration?
-    var hoursOfPrecipitation, hoursOfRain, hoursOfSnow, hoursOfIce: Int?
-    var cloudCover: Int?
+    var hoursOfPrecipitation, hoursOfRain: Double?
+    var hoursOfSnow, hoursOfIce, cloudCover: Int?
     var evapotranspiration, solarIrradiance: Evapotranspiration?
+    var precipitationType, precipitationIntensity: String?
 
     enum CodingKeys: String, CodingKey {
         case icon = "Icon"
@@ -130,9 +136,11 @@ class Day: Codable {
         case cloudCover = "CloudCover"
         case evapotranspiration = "Evapotranspiration"
         case solarIrradiance = "SolarIrradiance"
+        case precipitationType = "PrecipitationType"
+        case precipitationIntensity = "PrecipitationIntensity"
     }
 
-    init(icon: Int?, iconPhrase: String?, hasPrecipitation: Bool?, shortPhrase: String?, longPhrase: String?, precipitationProbability: Int?, thunderstormProbability: Int?, rainProbability: Int?, snowProbability: Int?, iceProbability: Int?, wind: Wind?, windGust: Wind?, totalLiquid: Evapotranspiration?, rain: Evapotranspiration?, snow: Evapotranspiration?, ice: Evapotranspiration?, hoursOfPrecipitation: Int?, hoursOfRain: Int?, hoursOfSnow: Int?, hoursOfIce: Int?, cloudCover: Int?, evapotranspiration: Evapotranspiration?, solarIrradiance: Evapotranspiration?) {
+    init(icon: Int?, iconPhrase: String?, hasPrecipitation: Bool?, shortPhrase: String?, longPhrase: String?, precipitationProbability: Int?, thunderstormProbability: Int?, rainProbability: Int?, snowProbability: Int?, iceProbability: Int?, wind: Wind?, windGust: Wind?, totalLiquid: Evapotranspiration?, rain: Evapotranspiration?, snow: Evapotranspiration?, ice: Evapotranspiration?, hoursOfPrecipitation: Double?, hoursOfRain: Double?, hoursOfSnow: Int?, hoursOfIce: Int?, cloudCover: Int?, evapotranspiration: Evapotranspiration?, solarIrradiance: Evapotranspiration?, precipitationType: String?, precipitationIntensity: String?) {
         self.icon = icon
         self.iconPhrase = iconPhrase
         self.hasPrecipitation = hasPrecipitation
@@ -156,6 +164,8 @@ class Day: Codable {
         self.cloudCover = cloudCover
         self.evapotranspiration = evapotranspiration
         self.solarIrradiance = solarIrradiance
+        self.precipitationType = precipitationType
+        self.precipitationIntensity = precipitationIntensity
     }
 }
 

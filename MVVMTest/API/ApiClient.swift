@@ -26,7 +26,7 @@ class ApiClient: ApiRepository, CityApiRepository, HourlyApiRepository{
         let cityKey = UserDefaults.standard.string(forKey: "City")!
         var url = URLComponents(string: "http://dataservice.accuweather.com/forecasts/v1/daily/5day/\(cityKey)")!
         url.queryItems = [
-            URLQueryItem(name: "apikey", value: "D6hi8JoQ08oyKwdk8JSPUABSi9hb4L5d"),
+            URLQueryItem(name: "apikey", value: "5d7mfVuqnsmA1LAbRr4x2kjLBbeFbBGK"),
             URLQueryItem(name: "language", value: "en"),
             URLQueryItem(name: "details", value: "true"),
             URLQueryItem(name: "metric", value: "true")
@@ -47,7 +47,7 @@ class ApiClient: ApiRepository, CityApiRepository, HourlyApiRepository{
                 }
             }catch{
                 callback(nil)
-                print("JSON Error")
+                print("JSON Error1")
             }
         }.resume()
     }
@@ -57,7 +57,7 @@ class ApiClient: ApiRepository, CityApiRepository, HourlyApiRepository{
         let cityNameKey = UserDefaults.standard.string(forKey: "CityName")!
         url.queryItems = [
             URLQueryItem(name: "q", value: "\(cityNameKey)"),
-            URLQueryItem(name: "apikey", value: "D6hi8JoQ08oyKwdk8JSPUABSi9hb4L5d"),
+            URLQueryItem(name: "apikey", value: "5d7mfVuqnsmA1LAbRr4x2kjLBbeFbBGK"),
             URLQueryItem(name: "language", value: "en"),
         ]
         
@@ -75,7 +75,7 @@ class ApiClient: ApiRepository, CityApiRepository, HourlyApiRepository{
                 }
             }catch{
                 callback(nil)
-                print("JSON Error")
+                print("JSON Error2")
             }
         }.resume()
     }
@@ -84,7 +84,7 @@ class ApiClient: ApiRepository, CityApiRepository, HourlyApiRepository{
         let cityKey = UserDefaults.standard.string(forKey: "City")!
         var url = URLComponents(string: "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/\(cityKey)")!
         url.queryItems = [
-            URLQueryItem(name: "apikey", value: "D6hi8JoQ08oyKwdk8JSPUABSi9hb4L5d"),
+            URLQueryItem(name: "apikey", value: "5d7mfVuqnsmA1LAbRr4x2kjLBbeFbBGK"),
             URLQueryItem(name: "language", value: "en"),
             URLQueryItem(name: "details", value: "false"),
             URLQueryItem(name: "metric", value: "true")
@@ -104,7 +104,7 @@ class ApiClient: ApiRepository, CityApiRepository, HourlyApiRepository{
                 }
             }catch{
                 callback(nil)
-                print("JSON Error")
+                print("JSON Error3")
             }
         }.resume()
     }
